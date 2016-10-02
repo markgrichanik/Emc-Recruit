@@ -1,0 +1,29 @@
+{
+  "name": "emc-recurit",
+  "version": "0.0.7",
+  "description": "EMC recruit test",
+  "main": "server.js",
+  "bin": {
+    "emc-test": "main.js"
+  },
+  "preferGlobal": "true",
+  "author": "Mark Grichanik <markgrichanik@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markgrichanik/Emc-Recruit.git"
+  },
+  "license": "ISC",
+  "homepage": "https://github.com/markgrichanik/Emc-Recruit#readme",
+  "dependencies": {
+    "express": "latest",
+    "mongoose": "latest",
+    "morgan": "latest",
+    "socket.io": "latest"
+  },
+  "bugs": {
+    "url": "https://github.com/markgrichanik/Emc-Recruit/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

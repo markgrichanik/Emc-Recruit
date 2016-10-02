@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <h3 class="modal-title text-center">Add To Time sheet</h3>
+</div>
+<div class="modal-body">
+    <div class="infoConnected">
+        <img ng-src="{{imgSrc}}" id="creatorImage" />
+        <form name="enterForm" id="enterForm" novalidate class="loginForm">
+            <div class="radio">
+                <label>
+                    <input type="radio" ng-model="user.start" name="optionsRadios" id="optionsRadios1" data-ng-value="true" checked>Start shift
+                </label>
+                <label>
+                    <input type="radio" ng-model="user.start" name="optionsRadios" id="optionsRadios2" data-ng-value="false">End shift
+                </label>
+            </div>
+            <br>
+            <input type="text" class="title-text" name="id" ng-model="user.id" placeholder="Your ID" only-digits required ng-class="{ 'red-border': enterForm.id.$dirty && enterForm.id.$invalid }">
+            <span style="color:red" ng-show="enterForm.id.$dirty && enterForm.id.$invalid">
+                            <span ng-show="enterForm.id.$error.required">ID is required.</span>
+            </span>
+            <br>
+            <input type="text" class="title-text" name="firstName" ng-model="user.firstName" placeholder="Your first name" required only-letters ng-class="{ 'red-border': enterForm.firstName.$dirty && enterForm.firstName.$invalid }">
+            <span style="color:red" ng-show="enterForm.firstName.$dirty && enterForm.firstName.$invalid">
+                            <span ng-show="enterForm.firstName.$error.required">First name is required.</span>
+            </span>
+            <br>
+            <input type="text" class="title-text" name="lastName" ng-model="user.lastName" placeholder="Your last name" required only-letters ng-class="{ 'red-border': enterForm.lastName.$dirty && enterForm.lastName.$invalid }">
+            <span style="color:red" ng-show="enterForm.lastName.$dirty && enterForm.lastName.$invalid">
+                            <span ng-show="enterForm.lastName.$error.required">Last name is required.</span>
+            </span>
+            <br>
+            <input type="file" ng-model="user.img" onchange="angular.element(this).scope().imageUpload(this)" />
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <span ng-show="errorLog" class="error-log float-left">
+                    {{errorLog.msg}}
+                    </span>
+    <button class=" btn custom-btn" type="button" ng-click="submit()" ng-disabled=" enterForm.firstName.$invalid || enterForm.lastName.$invalid">Submit</button>
+    <button class=" btn  custom-btn" type="button" ng-click="cancel()">Cancel</button>
+</div>
