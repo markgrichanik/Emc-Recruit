@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="timeSheet">
+
+<head>
+    <title>Time Sheet</title>
+    <link type="text/css" rel="stylesheet" href="css/stylesheet.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.0.0.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="js/socket.js"></script>
+    <script src="js/smart-table.js"></script>
+    <script src="js/controllers/appCtrl.js"></script>
+    <script src="js/controllers/modalCtrl.js"></script>
+    <script src="js/filters/startOrFinishFilter.js"></script>
+    <script src="js/services/socket.js"></script>
+    <script src="js/services/tableService.js"></script>
+    <script src="js/directives/onlyDigits.js"></script>
+    <script src="js/directives/onlyLetters.js"></script>
+</head>
+
+<body>
+    <div ng-controller="AppCtrl as vm" ng-init="init()">
+        <header class="banner" id="globalnav-logo">
+            <img src="//www.emc.com/content/dam/uwaem/assets/globalnav/globalnav-logo.png" alt="Dell EMC Logo">
+            <h1> Time Sheet </h1>
+        </header>
+        <section class="section">
+            <div class="box">
+                <button type="button" class="btn btn-lg btn-primary dell-color" ng-click="openModal()">Add</button>
+                <br>
+                <br>
+                <table class="table" st-pipe="callServer" st-table="displayed">
+                    <thead>
+                        <tr>
+                            <th colspan="5">
+                                <input st-search="" class="form-control" placeholder="search ..." type="text" />
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="table-text-align" st-sort="id">id</th>
+                            <th class="table-text-align" st-sort="firstName">first name</th>
+                            <th class="table-text-align" st-sort="lastName">last name</th>
+                            <th class="table-text-align" st-sort="created">date</th>
+                            <th class="table-text-align" st-sort="start">type</th>
+                            <!--th class="table-text-align">img</th-->
+                        </tr>
+                    </thead>
+                    <tbody ng-show="!isLoading && !emptyTable">
+                        <tr ng-repeat="row in displayed">
+                            <td>{{row.id}}</td>
+                            <td>{{row.firstName}}</td>
+                            <td>{{row.lastName}}</td>
+                            <td>{{row.created | date:"MM/dd/yyyy 'at' h:mma"}}</td>
+                            <td>{{row.start | startOrFinishFilter}}</td>
+                        </tr>
+                    </tbody>
+                    <tbody ng-show="isLoading ">
+                        <tr>
+                            <td colspan="4" class="text-center">Loading ... </td>
+                        </tr>
+                    </tbody>
+                    <tbody ng-show="!isLoading && emptyTable">
+                        <tr>
+                            <td colspan="4" class="text-center">No data found ... </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="text-center" st-pagination="" st-items-by-page="10" colspan="4">
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+        </section>
+    </div>
+</body>
+
+</html>
