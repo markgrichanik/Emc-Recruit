@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 var app = angular.module('timeSheet', ['ui.bootstrap', 'btford.socket-io', 'smart-table']).value('nickName', 'anonymous');
 
 app.controller('AppCtrl', ['$scope', 'timeSheetSocket', 'nickName', '$uibModal', 'tableService', '$timeout', function($scope, timeSheetSocket,  nickName, $uibModal, tableService, $timeout) {
+=======
+var app = angular.module('timeSheet', ['ui.bootstrap', 'btford.socket-io', 'smart-table']);
+
+app.controller('AppCtrl', ['$scope', 'timeSheetSocket', '$uibModal', 'tableService', '$timeout', function($scope, timeSheetSocket, $uibModal, tableService, $timeout) {
+>>>>>>> origin/master
     var localTableState = { search: {}, sort: {}, pagination: { start: 0, number: 0 } };
     $scope.emptyTable = true;
 

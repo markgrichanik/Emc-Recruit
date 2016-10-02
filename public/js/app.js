@@ -6,5 +6,9 @@ angular
         'ngResource',
         'ngSanitize',
         'btford.socket-io'
+<<<<<<< HEAD
     ])
     .value('nickName', 'anonymous');
+=======
+    ]);
+>>>>>>> origin/master
